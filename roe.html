@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Subic Jobs</title>
+</head>
+<body>
+	<div class="header  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#"></a>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<div class="row border" >
+		<h5 class="teal white-text header2">Register of Eligibles</h5>
+		<div class="row padding-left-right">
+			<table class ="highlight bordered centered responsive-table">
+				<thead>
+					<tr>
+					<th data-field="Applicant's Name">Applicant's Name</th>
+					<th data-field="Applicant's Address">Applicant's Address</th>
+					<th data-field="Contact Number">Contact Number</th>
+					<th data-field="Place of Birth">Place of Birth</th>
+					<th data-field="Add">Add</th>
+					<th data-field="Archive">Archive</th>
+					<th data-field="Action">Action</th>
+					</tr>
+				</thead>
+				<tbody id="jpostingAppData">
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<br>
+	<br>
+	<button type="button" name="action" id="sub" class="btn waves-effect waves-light btn-large responsive-button" onclick="sort()">Submit
+		<i class="material-icons right">send</i>
+	</button>
+	</div>
+	<br><br><br><br>
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		livedone();	
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 10000);
+	}
+
+	function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL.split('&'), sParameterName, i;
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : sParameterName[1];
+			}
+		}
+	}	
+
+	function liveFeed() {
+		var jobid = getUrlParameter('jobid');
+		var compid = getUrlParameter('compid');
+		$.getJSON('server/fetcher.php?jobid='+jobid+'&compid='+compid, function(jsonData) {
+			$('#jpostingAppData').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#jpostingAppData').append('<tr><td>'+obj.app_lastname+' '+obj.app_firstname+'</td><td>'+obj.app_address+'</td><td>'+obj.app_contact+'</td><td>'+obj.app_address+'</td><td><input type="checkbox" name="approve[]" class="with-gap" id="approve'+idx+'" value="'+obj.apply_id+'" /><label for="approve'+idx+'"></label></td><td><input type="checkbox" name="archive[]" class="with-gap" id="archive'+idx+'" value="'+obj.apply_id+'" /><label for="archive'+idx+'"></label></td><td><a href="profile.html?appId='+obj.applicant_id+'" class="waves-effect waves-light btn">Profile</a></td></tr>');
+			});	
+		});	
+	}
+	
+	function sort() {
+		var approve = $("input[name='approve[]']").map(function(){return $(this).val();}).get();
+		var newapprove = approve.toString()
+		var lines = newapprove.split(",");
+		$.each(lines, function(key, line) {
+			alert(line);
+			$.ajax({
+				url : 'server/posting.php',
+				type: 'POST',
+				data : 'jobappid='+line,
+				success:function(data, textStatus, jqXHR) {
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				}
+			});
+		});	
+		
+		var archive = $("input[name='archive[]']").map(function(){return $(this).val();}).get();
+		var newarchive = archive.toString()
+		var lines2 = newarchive.split(",");
+		$.each(lines2, function(key, line2) {
+			alert(line2);
+			$.ajax({
+				url : 'server/posting.php',
+				type: 'POST',
+				data : 'jobarchid='+line2,
+				success:function(data, textStatus, jqXHR) {
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				}
+			});
+		});		
+	}
+	
+	
+	//alert(approve);
+	//alert(archive);
+	</script>	
+</body>
+</html>

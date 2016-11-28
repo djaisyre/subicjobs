@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+    <div class="nav-wrapper container">
+    <ul class="right hide-on-med-and-down">
+    <li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+    </ul>
+  </nav>
+  <div class="row">
+    <div class="col s12">
+      <div class="card z-depth-5">
+        <div class="card-image" >
+          <img id="cdImg" src="background4.jpg">
+        </div>
+        <div class="col s12 center" id="imgSze">
+          <img src="icons/e1.png" width="95px" height="95px" class="circle">
+        </div>
+        <div class="card-content center">
+         <p> John Doe</p>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="row">
+		<div class="col s12 m2 l2">
+		<!--<div class="collection">
+				<a href="applicantform.html" class="collection-item"><span class="new badge">4</span>Applicants</a>
+				<a href="companyform.html" class="collection-item">Locators</a>
+				<a href="postingform.html" class="collection-item"><span class="badge">14</span>Job Postings</a>
+			</div>-->
+		</div>
+		<div class="col s12 m10 l10">
+			<h3>Experiences</h3>
+			<a class="waves-effect waves-light btn" href="#modal1">Add Experience</a>
+			<!-- Modal Structure -->
+			<div id="modal1" class="modal">
+				<div class="modal-content">
+					<h4>Add Experience</h4>
+					<div class="row">			
+						<form id="ajaxform" class="col s12">
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="hidden" name="job_exp_id" id="job_exp_id" class="validate" />
+									<input type="text" name="job_exp_establishment_name" id="job_exp_establishment_name" class="validate" placeholder="Establishment Name" />
+									<label for="job_exp_establishment_name">Establishment Name</label>
+								</div>
+								<div class="input-field col s6">
+									<input type="text" name="job_exp_started" id="job_exp_started" class="validate" placeholder="Start" />
+									<label for="job_exp_started">Started</label>
+								</div>
+							</div>						
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="text" name="job_exp_end" id="job_exp_end" class="validate" placeholder="End" />
+									<label for="job_exp_end">End</label>
+								</div>
+								<div class="input-field col s6">
+									<input type="text" name="job_exp_titlte" id="job_exp_titlte" class="validate" placeholder="Job Title"/>
+									<label for="job_exp_titlte">Job Title</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="text" name="applicant_id" id="applicant_id" class="validate" placeholder="Applicant ID" />
+									<label for="applicant_id">Applicant ID</label>
+								</div>
+								<div class="input-field col s6">
+								</div>
+							</div>	
+							<div class="row">
+								<div class="input-field col s12">
+									<button class="btn waves-effect waves-light" type="submit" name="action" id="submitme">Submit<i class="material-icons right">send</i></button>
+									<button class="btn waves-effect waves-light" type="submit" name="action" id="editme">Update<i class="material-icons right">send</i></button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+				</div>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th data-field="Establishment">Establishment</th>
+						<th data-field="Start">Start</th>
+						<th data-field="End">End</th>
+						<th data-field="Experience Title">Experience Title</th>
+						<th data-field="Applicant ID">Applicant ID</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="expTableData">
+				</tbody>
+			</table>			
+		</div>
+	</div>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('.modal').modal();
+
+		$('#submitme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/experience.php?ins=ins',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});
+		
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/experience.php?edt=edt',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});	
+
+		livedone();
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?dataexp=experience', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#expTableData').append('<tr><td>'+ obj.job_exp_establishment_name +'</td><td>'+ obj.job_exp_started +'</td><td>'+ obj.job_exp_end +'</td><td>'+ obj.job_exp_titlte +'</td><td>'+ obj.applicant_id +'</td><td><a href="#modal1" onClick="getExperience('+obj.job_exp_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delExperience('+obj.job_exp_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a></td></tr>');
+			});	
+		});	
+	}
+
+	function getExperience(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataexp='+dataId, function(jsonData) {
+			$('#job_exp_id').val(jsonData.job_exp_id);
+			$('#job_exp_establishment_name').val(jsonData.job_exp_establishment_name);
+			$('#job_exp_started').val(jsonData.job_exp_started);
+			$('#job_exp_end').val(jsonData.job_exp_end);
+			$('#job_exp_titlte').val(jsonData.job_exp_titlte);
+			$('#applicant_id').val(jsonData.applicant_id);
+		});	
+	}
+	</script>
+</body>
+</html>

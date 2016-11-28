@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
+	<title>SubicJobs</title>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo" ><img src="icons/logo1.png" alt="" class="responsive-img"></a>
+			<ul id="dropdown1" class="dropdown-content">
+				<li><a href="login.html">Admin</a></li>
+				<li><a href="loginapplicant.html">Applicant</a></li>
+				<li class="divider"></li>
+				<li><a href="loginlocator.html">Locator</a></li>
+			</ul>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="index.html"><img src="icons/h.png" classs="icon"> Home</a></li>
+				<li><a href="jobpost.html"><img src="icons/s.png" class="icon"> Job Postings</a></li>
+				<li><a href="faqs.html"><img src="icons/q.png" class="icon"> FAQs</a></li>
+				<li><a href="about.html"><img src="icons/a.png" class="icon"> About Us</a></li>
+				<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+			</ul>
+			<ul id="dropdown2" class="dropdown-content">
+				<li><a href="login.html">Admin</a></li>
+				<li><a href="loginapplicant.html">Applicant</a></li>
+				<li class="divider"></li>
+				<li><a href="loginlocator.html">Locator</a></li>
+			</ul>
+			<ul id="nav-mobile" class="side-nav">
+				<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
+				<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
+				<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
+				<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
+				<li><a class="dropdown-button" href="#!" data-activates="dropdown2">Login<i class="material-icons right">arrow_drop_down</i></a></li>
+			</ul>
+			<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
+		</div>
+	</nav>
+	<h3 class="register"><img src="icons/r2.png" class="icon"> Register </h3> <br>
+	<div class="row wew">
+		<form method="post" id="ajaxform" class="col s12">
+			<!--
+			<div class="file-field input-field col 4 " id="filepic">
+				<div class="btn">
+					<span>File</span>
+					<input type="file">
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text" placeholder="Upload your 2x2 picture here.">
+				</div>
+			</div>
+			-->
+			<div class="row">
+				<!--<div class="input-field col s6">
+					<input id="app_date_registered" name="app_date_registered" type="date" class="datepicker">
+					<label for="app_date_registered">Date Registered</label>
+				</div>-->
+				<div class="input-field col s6">
+					<input id="app_status" name="app_status" value="1" type="hidden" class="validate" required/>
+					<label for="app_status"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="app_username" name="app_username" type="text" class="validate" required/>
+					<label for="username">Username</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="app_password" name="app_password" type="password" class="validate" required/>
+					<label for="password">Password</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="app_firstname" name="app_firstname" type="text" class="validate" required/>
+					<label for="app_firstname">First Name</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="app_middlename" name="app_middlename" type="text" class="validate" required/>
+					<label for="app_middlename">Middle Name</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="app_lastname" name="app_lastname" type="text" class="validate" required/>
+					<label for="app_lastname">Last Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="app_address" name="app_address" type="text" class="validate" required/>
+					<label for="app_address">Address</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="app_email" name="app_email" type="email" class="validate" required/>
+					<label for="app_email" data-error="wrong" data-success="right">Email</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="app_contact" name="app_contact" type="number" class="validate" required/>
+					<label for="app_contact">Contact Number</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input id="app_age" name="app_age" type="number" class="validate" required/>
+					<label for="app_age">Age</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="app_dob" name="app_dob" type="date" class="datepicker" required/>
+					<label for="app_dob">Date of Birth</label>
+				</div>
+				<div class="input-field col s5">
+					<input id="app_pob" name="app_pob" type="text" class="validate" required/>
+					<label for="app_pob">Place of Birth</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<select class="browser-default" id="app_sex" name="app_sex" required/>
+						<option value="" disabled selected>Sex</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+				<div class="input-field col s6">
+					<select class="browser-default" id="app_civilstatus" name="app_civilstatus" required/>
+						<option value="" disabled selected>Civil Status</option>
+						<option value="Single">Single</option>
+						<option value="Married">Married</option>
+						<option value="Widowed">Widowed</option>
+						<option value="Separated">Separated</option>
+						<option value="Divorced">Divorced</option>
+					</select>
+				</div>
+			</div>
+			<button class="btn waves-effect waves-light btn-large responsive-button" type="submit" name="action" id="submitme">Submit
+			<i class="material-icons right">send</i>
+			</button>
+		</form>
+	</div>
+	<footer class="page-footer blue-lighten-1">
+		<div class="container ">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">Subic Bay Metropolitan Authority</h5>
+					<p class="white-text">Bldg. 229 Waterfront Road, Subic Bay Freeport Zone, Philippines.<br>Voice: +6347 252 4000 Fax: +6347 252 4185 </p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+			</div>
+		</div>
+	</footer>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+	
+		$('.modal').modal();
+		$('select').material_select();
+
+		
+		$('.datepicker').pickadate({
+		formatSubmit: 'yyyy/mm/dd',
+		hiddenName: true
+		});
+		
+
+		$('#submitme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/applicant.php?ins=ins',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					//location.reload();
+					window.location.href="loginapplicant.html";
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});	
+		
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/applicant.php?edt=edt',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});		
+		
+		livedone();
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?dataapp=applicant', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#applicantTableData').append('<tr><td>'+ obj.app_firstname +'</td><td>'+ obj.app_middlename +'</td><td>'+ obj.app_lastname +'</td><td>'+ obj.app_address +'</td><td>'+ obj.app_contact +'</td><td>'+ obj.app_email +'</td><td>'+ obj.app_dob +'</td><td>'+ obj.app_pob +'</td><td>'+ obj.app_sex +'</td><td>'+ obj.app_civilstatus +'</td><td>'+ obj.app_date_registered +'</td><td>'+ obj.app_status +'</td><td>'+ obj.app_username +'</td><td>'+ obj.app_password +'</td><td><a href="#modal1" onClick="getApplicant('+obj.applicant_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delApplicant('+obj.applicant_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a> <a href="educform.html" class="waves-effect waves-light btn"><i class="material-icons left">person_pin</i> Education</a> <a href="experinceform.html" class="waves-effect waves-light btn"><i class="material-icons left">assignment</i> Experience</a></td></tr>');
+			});	
+		});	
+	}
+
+	function getApplicant(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataapp='+dataId, function(jsonData) {
+			$('#applicant_id').val(jsonData.applicant_id);
+			$('#app_firstname').val(jsonData.app_firstname);
+			$('#app_middlename').val(jsonData.app_middlename);
+			$('#app_lastname').val(jsonData.app_lastname);
+			$('#app_address').val(jsonData.app_address);
+			$('#app_contact').val(jsonData.app_contact);
+			$('#app_email').val(jsonData.app_email);
+			$('#app_dob').val(jsonData.app_dob);
+			$('#app_pob').val(jsonData.app_pob);
+
+			$("#app_sex option").filter(function() { return this.text == jsonData.app_sex; }).attr('selected', true);
+			$("#app_civilstatus option").filter(function() { return this.text == jsonData.app_civilstatus; }).attr('selected', true);
+			$('select[name="app_status"]').find('option[value="'+jsonData.app_status+'"]').attr("selected", true);
+
+			$('#app_username').val(jsonData.app_username);
+			$('#app_password').val(jsonData.app_password);
+		});	
+	}
+	</script>	
+  </body>
+</html>

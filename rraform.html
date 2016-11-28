@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+			<ul class="right hide-on-med-and-down">
+				<li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+			</ul>
+	</nav>
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="background4.jpg">
+				</div>
+				<div class="col s2">
+					<img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+				</div>
+				<div class="card-content">
+					<h4 id="hAdmin">Hello Admin!</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s12 m2 l2">
+			<div class="collection">
+				<a href="applicantform.html" class="collection-item"><span class="new badge">4</span>Applicants</a>
+				<a href="companyform.html" class="collection-item">Locators</a>
+				<a href="postingform.html" class="collection-item"><span class="badge">14</span>Job Postings</a>
+				<a href="adminform.html" class="collection-item"><span class="badge">14</span>Admin</a>
+				<a href="rraform.html" class="collection-item"><span class="badge">14</span>Request</a>
+				<a href="shortlist.html" class="collection-item"><span class="badge">14</span>Shortlist</a>
+				<a href="skills.html" class="collection-item"><span class="badge">14</span>Skills Inventory</a>
+				<a href="pending1.html" class="collection-item"><span class="badge">14</span>Pending Job Posts</a>
+				<a href="hired2.html" class="collection-item"><span class="badge">14</span>List of Hired Applicants</a>
+				<a href="archive.html" class="collection-item"><span class="badge">14</span>Archive</a>
+				<a href="#!" class="collection-item"><span class="badge">14</span>Reports</a>
+				<a href="addIndex" class="collection-item"><span class="badge">14</span>Dashboard</a>
+			</div>
+		</div>
+		<div class="col s12 m10 l10">
+			<table>
+				<thead>
+					<tr>
+						<th data-field="Job Vacancy">Job Vacancy</th>
+						<th data-field="Number of Personnel to be Hired for the Position">Number of Personnel to be Hired </th>
+						<th data-field="Number of Applicants you want to be Endorsed (if Applicable)">Number of Applicants you want to be Endorsed </th>
+						<th data-field="Duties and Functions">Duties and Functions</th>
+						<th data-field="Qualifications">Qualifications</th>
+						<th data-field="Closing Date of Position">Closing Date of Position</th>
+						<th data-field="Date for Examination Interview">Date for Examination Interview</th>
+						<th data-field="Venue for Interview (Complete Address)">Venue for Interview (Complete Address)</th>
+						<th data-field="Date/Month Expected to Hire Requested Workers">Date/Month Expected to Hire Requested Workers</th>
+						<th data-field="Documents Required from Applicants">Documents Required from Applicants</th>
+						<th data-field="Company Id">Company Id</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="rraTableData">
+				</tbody>
+			</table>			
+		</div>
+	</div>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		livedone();
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?datarra=rra', function(jsonData) {
+			$('#rraTableData').empty();
+			$.each(jsonData, function(idx, obj) {
+			$('#rraTableData').append('<tr><td>'+ obj.tbl_rra_job +'</td><td>'+ obj.tbl_num_hired +'</td><td>'+ obj.tbl_num_endorsed +'</td><td>'+ obj.tbl_duties +'</td><td>'+ obj.tbl_qualifications +'</td><td>'+ obj.tbl_closing_date +'</td><td>'+ obj.tbl_date_exam +'</td><td>'+ obj.tbl_venue_interview +'</td><td>'+ obj.tbl_date_hire +'</td><td>'+ obj.tbl_docu +'</td><td>'+ obj.comp_id +'</td></tr>');
+			});	
+		});
+	}
+
+	function getRra(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?datarra='+dataId, function(jsonData) {
+			$('#tbl_rra_id').val(jsonData.tbl_rra_id);
+			$('#tbl_rra_job').val(jsonData.tbl_rra_job);
+			$('#tbl_num_hired').val(jsonData.tbl_num_hired);
+			$('#tbl_num_endorsed').val(jsonData.tbl_num_endorsed);
+			$('#tbl_duties').val(jsonData.tbl_duties);
+			$('#tbl_qualifications').val(jsonData.tbl_qualifications);
+			$('#tbl_closing_date').val(jsonData.tbl_closing_date);
+			$('#tbl_date_exam').val(jsonData.tbl_date_exam);
+			$('#tbl_venue_interview').val(jsonData.tbl_venue_interview);
+			$('#tbl_date_hire').val(jsonData.tbl_date_hire);
+			$('#tbl_docu').val(jsonData.tbl_docu);
+			$('#comp_id').val(jsonData.comp_id);
+		});	
+	}
+	</script>
+</body>
+</html>

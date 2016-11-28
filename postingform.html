@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+    <div class="nav-wrapper container">
+    <ul class="right hide-on-med-and-down">
+    <li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+    </ul>
+  </nav>
+  <div class="row">
+    <div class="col s12">
+      <div class="card z-depth-5">
+        <div class="card-image" >
+          <img id="cdImg" src="background4.jpg">
+        </div>
+        <div class="col s2">
+          <img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+        </div>
+        <div class="card-content">
+         <h4 id="hAdmin">Hello Admin!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="row">
+		<div class="col s12 m2 l2">
+			<div class="collection">
+				<a href="applicantform.html" class="collection-item"><span class="new badge">4</span>Applicants</a>
+				<a href="companyform.html" class="collection-item">Locators</a>
+				<a href="postingform.html" class="collection-item"><span class="badge">14</span>Job Postings</a>
+				<a href="adminform.html" class="collection-item"><span class="badge">14</span>Admin</a>
+				<a href="rraform.html" class="collection-item"><span class="badge">14</span>Request</a>
+				<a href="shortlist.html" class="collection-item"><span class="badge">14</span>Shortlist</a>
+				<a href="skills.html" class="collection-item"><span class="badge">14</span>Skills Inventory</a>
+				<a href="pending1.html" class="collection-item"><span class="badge">14</span>Pending Job Posts</a>
+				<a href="hired2.html" class="collection-item"><span class="badge">14</span>List of Hired Applicants</a>
+				<a href="archive.html" class="collection-item"><span class="badge">14</span>Archive</a>
+				<a href="#!" class="collection-item"><span class="badge">14</span>Reports</a>
+				<a href="addIndex" class="collection-item"><span class="badge">14</span>Dashboard</a>
+			</div>
+		</div>
+		<div class="col s12 m10 l10">
+			<h3><img src="icons/post2.png" class="icon">  Job Postings</h3>
+			<a class="waves-effect waves-light btn" href="#modal1">Add Posting</a>
+			<!-- Modal Structure -->
+			<div id="modal1" class="modal">
+				<div class="modal-content">
+					<h4>Job Posting</h4>
+					<div class="row">			
+						<form id="ajaxform" class="col s12">
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="hidden" name="job_id" id="job_id" class="validate" />
+									<input type="text" name="job_title" id="job_title" class="validate" placeholder="Job Title" />
+									<label for="job_title">Job Title</label>
+								</div>
+								<div class="input-field col s6">
+									<input type="text" name="job_deployment_place" id="job_deployment_place" class="validate" placeholder="Deployment Place" />
+									<label for="job_deployment_place">Deployment Place</label>
+								</div>								
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="text" name="comp_id" id="comp_id" class="validate" placeholder="Company ID" />
+									<!--
+									<select name="comp_id" id="comp_id">
+									</select>
+									-->
+									<label>Company</label>								
+								</div>	
+								<div class="input-field col s6">
+									<input type="text" name="job_date_added" id="job_date_added" class="validate" placeholder="Date Added" />
+									<label for="job_date_added">Date Added</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="text" name="job_closing_date" id="job_closing_date" class="validate" placeholder="Closing Date" />
+									<label for="job_closing_date">Closing Date</label>
+								</div>							
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<textarea name="job_qualifications" id="job_qualifications" class="materialize-textarea" placeholder="Qualifications"></textarea>
+									<label for="job_qualifications">Textarea</label>
+								</div>							
+							</div>							
+							<div class="row">
+								<div class="input-field col s12">
+									<button class="btn waves-effect waves-light" type="submit" name="action" id="submitme">Submit<i class="material-icons right">send</i></button>
+									<button class="btn waves-effect waves-light" type="submit" name="action" id="editme">Update<i class="material-icons right">send</i></button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+				</div>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th data-field="Title">Title</th>
+						<th data-field="Qualifications">Qualifications</th>
+						<th data-field="Deployment Place">Deployment Place</th>
+						<th data-field="Date Added">Date Added</th>
+						<th data-field="Closing Date">Closing Date</th>
+						<th data-field="Company ID">Company ID</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="jpostingTableData">
+				</tbody>
+			</table>			
+		</div>
+	</div>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('.modal').modal();
+		$('select').material_select();
+
+		// clear contents
+		var selectDropdown = $('#comp_id').empty().html('');
+		// trigger event
+		selectDropdown.trigger('contentChanged');		
+		$.getJSON('server/fetcher.php?datacomp=company', function(result) {
+			$.each(result, function(index, jsonData) {
+				selectDropdown.append($("<option></option>").attr("value", jsonData.comp_id).text(jsonData.comp_establistment_name));
+			});
+		});	
+		
+		$('#submitme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/posting.php?ins=ins',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});
+
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/posting.php?edt=edt',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});	
+		
+		livedone();	
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?datapost=posting', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#jpostingTableData').append('<tr><td>'+ obj.job_title +'</td><td>'+ obj.job_qualifications +'</td><td>'+ obj.job_deployment_place +'</td><td>'+ obj.job_date_added +'</td><td>'+ obj.job_closing_date +'</td><td>'+ obj.comp_id +'</td><td><a href="#modal1" onClick="getPosting('+obj.job_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delCompany('+obj.job_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a></td></tr>');
+			});	
+		});	
+	}
+
+	function getPosting(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?datapost='+dataId, function(jsonData) {
+			$('#job_id').val(jsonData.job_id);
+			$('#job_title').val(jsonData.job_title);
+			$('#job_qualifications').val(jsonData.job_qualifications);
+			$('#job_deployment_place').val(jsonData.job_deployment_place);
+			$('#job_date_added').val(jsonData.job_date_added);
+			$('#job_closing_date').val(jsonData.job_closing_date);
+			$('select[name="comp_id"]').find('option[value="'+jsonData.comp_id+'"]').attr("selected", true);
+		});	
+	}
+	</script>	
+</body>
+</html>

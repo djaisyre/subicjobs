@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>SubicJobs</title>
+</head>
+<body>
+	<div class="header  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#"></a>
+		</div>
+	</div>
+	<h3 class="register"><img src="icons/r2.png" class="icon"> Educational Background </h3> <br>
+	<div class="row wew">
+		<form id="ajaxform" class="col s12">
+			<div class="row">
+				<div class="input-field col s6">
+				<input type="hidden" name="educ_id" id="educ_id" class="validate" />
+					<select class="browser-default" id="educ_type" name="educ_type">
+					<option value="" disabled selected>Education Level</option>
+					<option value="College">College</option>
+					<option value="Vocational">Vocational</option>
+					<option value="Graduate School">Graduate School</option>
+					<option value="Secondary">Secondary</option>
+					<option value="Elementary">Elementary</option>
+				</select>
+				</div>
+				<div class="input-field col s6">
+					<input type="text" name="educ_school_name" id="educ_school_name" class="validate" placeholder="School Name" />
+					<label for="educ_school_name">School Name</label>								
+				</div>
+			</div>						
+			<div class="row">
+				<div class="input-field col s6">
+					<input type="text" name="educ_school_address" id="educ_school_address" class="validate" placeholder="School Address" />
+					<label for="educ_school_address">School Address</label>
+				</div>
+				<div class="input-field col s6">
+					<input type="number" name="educ_year_graduated" id="educ_year_graduated" class="validate" />
+					<label for="educ_year_graduated">Last Year Attended</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input type="text" name="applicant_id" id="applicant_id" class="validate" placeholder="Applicant ID" />
+					<label for="applicant_id">Applicant ID</label>
+				</div>
+				<div class="input-field col s6">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<button class="btn waves-effect waves-light" type="submit" name="action" id="submitme">Submit<i class="material-icons right">send</i></button>
+					<button class="btn waves-effect waves-light" type="submit" name="action" id="editme">Update<i class="material-icons right">send</i></button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function() {
+	
+		$('.datepicker').pickadate({
+		formatSubmit: 'yyyy/mm/dd',
+		hiddenName: true
+		});
+
+
+		$('#submitme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+
+				$.ajax({
+				url : 'server/educ.php?ins=ins',
+				type: 'POST',
+				data : postData,
+				success:function(data, textStatus, jqXHR) {
+				window.location.href="AppIndex.html";
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				}
+				});
+
+				e.preventDefault();
+			});
+		});
+
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+
+				$.ajax({
+				url : 'server/educ.php?edt=edt',
+				type: 'POST',
+				data : postData,
+				success:function(data, textStatus, jqXHR) {
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				}
+				});
+
+				e.preventDefault();
+			});
+		});	
+
+		livedone();
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?dataeduc=education', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#educTableData').append('<tr><td>'+ obj.educ_type +'</td><td>'+ obj.educ_school_name +'</td><td>'+ obj.educ_school_address +'</td><td>'+ obj.educ_year_graduated +'</td><td>'+ obj.applicant_id +'</td><td><a href="#modal1" onClick="getEducation('+obj.educ_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delEduc('+obj.educ_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a></td></tr>');
+			});	
+		});	
+	}
+
+	function getEducation(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataeduc='+dataId, function(jsonData) {
+			$('#educ_id').val(jsonData.educ_id);
+			$("#educ_type option").filter(function() { return this.text == jsonData.educ_type; }).attr('selected', true);
+			$('#educ_school_name').val(jsonData.educ_school_name);
+			$('#educ_school_address').val(jsonData.educ_school_address);
+			$('#educ_year_graduated').val(jsonData.educ_year_graduated);
+			$('#applicant_id').val(jsonData.applicant_id);
+		});	
+	}
+	</script>
+  </body>
+</html>

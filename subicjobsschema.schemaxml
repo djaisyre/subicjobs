@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">db_labor</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="tbl_admin" view="colnames">
+<left>72</left>
+<top>86</top>
+<width>145</width>
+<height>141</height>
+<sql_create_table>CREATE TABLE `tbl_admin` (
+  `admin_id` int(10) NOT NULL AUTO_INCREMENT,
+  `admin_username` varchar(35) DEFAULT NULL,
+  `admin_password` varchar(35) DEFAULT NULL,
+  `admin_fullname` varchar(55) DEFAULT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_app_educ" view="colnames">
+<left>46</left>
+<top>231</top>
+<width>171</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `tbl_app_educ` (
+  `educ_id` int(10) NOT NULL AUTO_INCREMENT,
+  `educ_type` varchar(30) DEFAULT NULL,
+  `educ_school_name` varchar(55) DEFAULT NULL,
+  `educ_school_address` varchar(55) DEFAULT NULL,
+  `educ_year_graduated` date DEFAULT NULL,
+  `applicant_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`educ_id`),
+  KEY `applicant_id` (`applicant_id`),
+  CONSTRAINT `tbl_app_educ_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `tbl_applicants` (`applicant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_apply" view="colnames">
+<left>428</left>
+<top>48</top>
+<width>217</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `tbl_apply` (
+  `apply_id` int(10) NOT NULL AUTO_INCREMENT,
+  `apply_qualifications` varchar(55) DEFAULT NULL,
+  `apply_date` date DEFAULT NULL,
+  `apply_status` varchar(35) DEFAULT NULL,
+  `applicant_id` int(10) DEFAULT NULL,
+  `job_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`apply_id`),
+  KEY `applicant_id` (`applicant_id`),
+  KEY `job_id` (`job_id`),
+  CONSTRAINT `tbl_apply_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `tbl_applicants` (`applicant_id`),
+  CONSTRAINT `tbl_apply_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `tbl_jobs` (`job_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_company" view="colnames">
+<left>867</left>
+<top>46</top>
+<width>199</width>
+<height>192</height>
+<sql_create_table>CREATE TABLE `tbl_company` (
+  `comp_id` int(10) NOT NULL AUTO_INCREMENT,
+  `comp_establistment_name` varchar(55) DEFAULT NULL,
+  `comp_address` varchar(55) DEFAULT NULL,
+  `comp_contact` int(25) DEFAULT NULL,
+  `comp_status` varchar(25) DEFAULT NULL,
+  `comp_username` varchar(35) DEFAULT NULL,
+  `comp_password` varchar(35) DEFAULT NULL,
+  PRIMARY KEY (`comp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_job_exp" view="colnames">
+<left>428</left>
+<top>227</top>
+<width>217</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `tbl_job_exp` (
+  `job_exp_id` int(10) NOT NULL AUTO_INCREMENT,
+  `job_exp_establishment_name` varchar(35) DEFAULT NULL,
+  `job_exp_started` date DEFAULT NULL,
+  `job_exp_end` date DEFAULT NULL,
+  `job_exp_titlte` varchar(55) DEFAULT NULL,
+  `applicant_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`job_exp_id`),
+  KEY `applicant_id` (`applicant_id`),
+  CONSTRAINT `tbl_job_exp_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `tbl_applicants` (`applicant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_jobs" view="colnames">
+<left>669</left>
+<top>285</top>
+<width>175</width>
+<height>192</height>
+<sql_create_table>CREATE TABLE `tbl_jobs` (
+  `job_id` int(10) NOT NULL AUTO_INCREMENT,
+  `job_title` varchar(55) DEFAULT NULL,
+  `job_qualifications` varchar(55) DEFAULT NULL,
+  `job_deployment_place` varchar(55) DEFAULT NULL,
+  `job_date_added` date DEFAULT NULL,
+  `job_closing_date` date DEFAULT NULL,
+  `comp_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`job_id`),
+  KEY `comp_id` (`comp_id`),
+  CONSTRAINT `tbl_jobs_ibfk_1` FOREIGN KEY (`comp_id`) REFERENCES `tbl_company` (`comp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_applicants" view="colnames">
+<left>241</left>
+<top>41</top>
+<width>164</width>
+<height>277</height>
+<sql_create_table>CREATE TABLE `tbl_applicants` (
+  `applicant_id` int(10) NOT NULL AUTO_INCREMENT,
+  `app_fullname` varchar(55) DEFAULT NULL,
+  `app_contact` int(20) DEFAULT NULL,
+  `app_email` varchar(35) DEFAULT NULL,
+  `app_dob` date DEFAULT NULL,
+  `app_pob` varchar(55) DEFAULT NULL,
+  `app_sex` varchar(11) DEFAULT NULL,
+  `app_civilstatus` varchar(11) DEFAULT NULL,
+  `app_date_registered` date DEFAULT NULL,
+  `app_status` varchar(25) DEFAULT NULL,
+  `app_username` varchar(35) DEFAULT NULL,
+  `app_password` varchar(35) DEFAULT NULL,
+  PRIMARY KEY (`applicant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

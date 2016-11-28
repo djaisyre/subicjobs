@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Subic Jobs</title>
+</head>
+<body>
+  <nav class="blue lighten-1 " role="navigation">
+    <div class="nav-wrapper container">
+    <ul class="right hide-on-med-and-down">
+    <li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+    </ul>
+  </nav>
+  <div class="row">
+    <div class="col s12">
+      <div class="card z-depth-5">
+        <div class="card-image" >
+          <img id="cdImg" src="background4.jpg">
+        </div>
+        <div class="col s2">
+          <img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+        </div>
+        <div class="card-content">
+         <h4 id="hAdmin">Hello Admin!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="row">
+		<div class="col s12 m2 l2">
+			<div class="collection">
+				<a href="applicantform.html" class="collection-item"><span class="new badge">4</span>Applicants</a>
+				<a href="companyform.html" class="collection-item">Locators</a>
+				<a href="postingform.html" class="collection-item"><span class="badge">14</span>Job Postings</a>
+				<a href="adminform.html" class="collection-item"><span class="badge">14</span>Admin</a>
+				<a href="rraform.html" class="collection-item"><span class="badge">14</span>Request</a>
+				<a href="shortlist.html" class="collection-item"><span class="badge">14</span>Shortlist</a>
+				<a href="skills.html" class="collection-item"><span class="badge">14</span>Skills Inventory</a>
+				<a href="pending1.html" class="collection-item"><span class="badge">14</span>Pending Job Posts</a>
+				<a href="hired2.html" class="collection-item"><span class="badge">14</span>List of Hired Applicants</a>
+				<a href="archive.html" class="collection-item"><span class="badge">14</span>Archive</a>
+				<a href="#!" class="collection-item"><span class="badge">14</span>Reports</a>
+				<a href="addIndex" class="collection-item"><span class="badge">14</span>Dashboard</a>
+				
+			</div>
+		</div>
+	
+	<div class="col s12 m10 l10">
+	<h3 class="register"><img src="icons/r1.png" class="icon"> Skills Inventory </h3> <br>
+		<!--<h5 class="teal white-text header2">Skills Inventory</h5>-->
+		
+			<table class ="highlight bordered centered responsive-table">
+			<thead>
+				<tr>
+					<th data-field="Skills Inventory Date">Skills Inventory Date</th>
+					<th data-field="Skills Inventory Score">Skills Inventory Score</th>
+					<th data-field="Skills Inventory Status">Skills Inventory Status</th>
+					<th data-field="Applicant Id">Applicant Id</th>
+					<th data-field="Job Id">Job Id</th>
+					<!--<th data-field="Add">Add</th>
+					<th data-field="Action">Action</th>-->
+				</tr>
+			</thead>
+			<tbody id="inventoryTableData">
+			</tbody>
+			</table>
+
+	<a class=" waves-effect waves-light btn-large">Send</a>
+	</div>
+		
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		
+		$('.button-collapse').sideNav({
+		draggable: true // Choose whether you can drag to open on touch screens
+	});
+		
+		
+		livedone();
+
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?datainventory=inventory', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#inventoryTableData').append('<tr><td>'+ obj.skills_inv_date +'</td><td>'+ obj.skills_inv_score +'</td><td>'+ obj.skills_inv_status +'</td><td>'+ obj.applicant_id +'</td><td>'+ obj.job_id +'</td></tr>');
+			});	
+		});	
+	}
+
+	function getInventory(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?datainventory='+dataId, function(jsonData) {
+			$('#skills_inv_id').val(jsonData.skills_inv_id);
+			$('#skills_inv_date').val(jsonData.skills_inv_date);
+			$('#skills_inv_score').val(jsonData.skills_inv_score);
+			$('#skills_inv_status').val(jsonData.skills_inv_status);
+			$('#applicant_id').val(jsonData.applicant_id);
+			$('#job_id').val(jsonData.job_id);
+		
+		});	
+	}
+	</script>	
+	
+</body>
+</html>

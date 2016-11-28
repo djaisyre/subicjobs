@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Subic Jobs</title>
+</head>
+<body>
+	<nav class=" blue lighten-1" role="navigation">
+		<ul class="right hide-on-med-and-down">
+			<li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+		</ul>
+	</nav>
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="background4.jpg">
+				</div>
+				<div class="col s2">
+					<img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+				</div>
+				<div class="card-content">
+					<h4 id="hAdmin">Hello Admin!</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="row">
+	<div class="col s12 m2 l2">
+		<div class="collection">
+			<a href="applicantform.html" class="collection-item"><span class="new badge">4</span>Applicants</a>
+			<a href="companyform.html" class="collection-item">Locators</a>
+			<a href="postingform.html" class="collection-item"><span class="badge">14</span>Job Postings</a>
+			<a href="adminform.html" class="collection-item"><span class="badge">14</span>Admin</a>
+			<a href="rraform.html" class="collection-item"><span class="badge">14</span>Request</a>
+			<a href="shortlist.html" class="collection-item"><span class="badge">14</span>Shortlist</a>
+			<a href="skills.html" class="collection-item"><span class="badge">14</span>Skills Inventory</a>
+			<a href="pending1.html" class="collection-item"><span class="badge">14</span>Pending Job Posts</a>
+			<a href="hired2.html" class="collection-item"><span class="badge">14</span>List of Hired Applicants</a>
+			<a href="archive.html" class="collection-item"><span class="badge">14</span>Archive</a>
+			<a href="#!" class="collection-item"><span class="badge">14</span>Reports</a>
+			<a href="addIndex" class="collection-item"><span class="badge">14</span>Dashboard</a>
+		</div>
+	</div>
+	<div class="col s12 m10 l10">
+		<div class="row" >
+			<h5>Hired Applicants</h5>
+			<table class ="highlight bordered centered responsive-table">
+				<thead>
+					<tr>
+						<th data-field="Name">Name</th>
+						<th data-field="Address">Address</th>
+						<th data-field="Company Name">Company Name</th>
+						<th data-field="Position">Position</th>
+						<th data-field="Date of Birth">Date of Birth</th>
+						<th data-field="Place of Birth">Place of Birth</th>
+						<th data-field="Gate Pass Expiration">Gate Pass Expiration</th>
+						<th data-field="Action">Action</th>
+					</tr>
+				</thead>
+				<tbody id="jpostingHiredData">
+					<!--
+					<tr>
+					<td>John Doe</td>
+					<td>Keme st. over there city</td>
+					<td>Nicera</td>
+					<td>Engineer</td>
+					<td>05/12/1990</td>
+					<td>over there city</td>
+					<td>09/12/2018</td>
+					<td>
+					<div>
+					<ul>
+					<a class="btn-floating  red darken-1"><i class="material-icons">delete</i></a>
+					</ul>
+					</div>
+					</td>
+					</tr>
+					-->
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="footer-copyright  blue lighten-1">
+<div class="container">
+<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+</div>
+</div>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		livedone();	
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL.split('&'), sParameterName, i;
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : sParameterName[1];
+			}
+		}
+	}	
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?hired=hired', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#jpostingHiredData').append('<tr><td>'+obj.app_lastname+' '+obj.app_firstname+'</td><td>'+obj.app_address+'</td><td>'+obj.comp_establistment_name+'</td><td>'+obj.job_title+'</td><td>'+obj.app_dob+'</td><td>'+obj.app_pob+'</td><td></td><td><a href="profile.html?appId='+obj.applicant_id+'" class="waves-effect waves-light btn">Profile</a></td></tr>');
+			});	
+		});	
+	}
+
+	$('.button-collapse').sideNav({
+		draggable: true // Choose whether you can drag to open on touch screens
+	});
+</script>
+</body>
+</html>

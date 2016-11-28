@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>SubicJobs</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+  <div class="header  blue lighten-1">
+    <div class="container">
+      <a class="white-text" href="#"></a>
+    </div>
+  </div>
+
+
+  <h3 class="register"><img src="icons/r2.png" class="icon"> Company Info </h3> <br>
+
+  <div class="row wew">
+    <form id="ajaxform" method="post" class="col s12">
+
+	<div class="row">
+	 <input id="comp_status" name="comp_status" type="hidden" value="1">
+	</div>
+	
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="comp_username" name="comp_username" type="text" class="validate">
+        <label for="comp_username">Username</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="comp_password" name="comp_password" type="password" class="validate">
+        <label for="comp_password">Password</label>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="comp_establistment_name" name="comp_establistment_name" type="text" class="validate">
+          <label for="comp_establistment_name">Company/Business Name</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="comp_address" name="comp_address" type="text" class="validate">
+          <label for="comp_address">Company/Business Address</label>
+        </div>
+      </div>
+
+      <div class="row">
+         <div class="input-field col s12">
+          <input id="comp_contact" name="comp_contact" type="text" class="validate">
+          <label for="comp_contact">Company/Business Contact Number</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="comp_email" name="comp_email" type="text" class="validate">
+          <label for="comp_email"  data-error="wrong" data-success="right">CompanyBusiness Email</label>
+        </div>
+
+        </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+          <select class="browser-default" id="comp_type" name="comp_type">
+            <option value="" disabled selected>Company/Business Type</option>
+            <option value="IT RELATED">IT RELATED / ELECTRONICS</option>
+            <option value="CIGARETTE">CIGARETTE MANUFACTURING INDUSTRIES</option>
+            <option value="MECHANICAl">MECHANICAL / INDUSTRIAL</option>
+            <option value="GARMENTS">GARMENTS / TEXTILES / PAPER INDUSTRIES</option>
+            <option value="WOOD">WOOD RELATED PRODUCTS</option>
+            <option value="JEWELRIES">JEWELRIES / ACCESSORIES</option>
+
+            <option value="BANKING">BANKING / INSURANCE / FINANCING</option>
+            <option value="HOTEL">HOTEL / RESTAURANT</option>
+            <option value="RETAILING">RETAILING / TRADING</option>
+            <option value="SCHOOLS">SCHOOLS</option>
+            <option value="TRANSPORTATION">TRANSPORTATION</option>
+            <option value="COMMUNICATIONS">COMMUNICATIONS</option>
+
+            <option value="UTILITIES">UTILITIES</option>
+            <option value="INFORMATION">INFORMATION TECHNOLOGY SERVICES</option>
+            <option value="BPO">BPO / DATA ENCODING SERVICES</option>
+            <option value="RECREATIONAL">RECREATIONAL / LEISURE /ENTERTAINMENT/ HEALTH SERVICES</option>
+            <option value="KIOSK">KIOSK / CANTEENS / CATERINGS</option>
+            <option value="WAREHOUSING ">FORWARDING / WAREHOUSING / TRANSSHIPMENT / TRUCKING / BROKERAGE</option>
+
+            <option value="HOUSING">REALTY / HOUSING</option>
+            <option value="AUCTION">CONVERSIONS / AUCTION / MOTOR VEHICLE RELATED WORKS</option>
+            <option value="COOPERATIVES">COOPERATIVES</option>
+            <option value="COURIER">COURIER SERVICES</option>
+            <option value="TRAVEL">TRAVEL AND TOURS / TOURISM-RELATED</option>
+            <option value="SECURITY">SECURITY AGENCY</option>
+
+             <option value="MANPOWER ">MANPOWER SERVICE PROVIDER</option>
+            <option value="SUPPORT">SUPPORT SERVICES</option>
+            <option value="HANJIN">HANJIN CONTRACTORS</option>
+            <option value="OTHER SHIPBUILDING">OTHER SHIPBUILDING / SHIP REPAIR CONTRACTORS</option>
+            <option value="OTHER MARINE">YAG-YAG / STEVEDORING / OTHER MARINE / PORT RELATED SERVICES</option>
+            <option value="CONSTRUCTION">CONSTRUCTION</option>
+          </select>
+        </div>
+    </div>
+
+        <br>
+        <br>
+
+
+
+          <button class="btn waves-effect waves-light btn-large responsive-button" type="submit" name="action" id="submitme">Submit
+             <i class="material-icons right">send</i>
+           </button>
+    </form>
+  </div><br><br><br><br>
+
+
+  <div class="footer-copyright  blue lighten-1">
+    <div class="container">
+      <a class="white-text" href="#">Copyright. All Rights Reserved</a>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  
+  <script type="text/javascript">
+	$(document).ready(function() {
+
+		$('.modal').modal();
+		$('select').material_select();
+		
+
+		$('#submitme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+
+				$.ajax({
+					url : 'server/company.php?ins=ins',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					window.location.href="loginlocator.html";
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});
+		
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+
+				$.ajax({
+					url : 'server/company.php?edt=edt',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});	
+		
+		livedone();
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?datacomp=company', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#companyTableData').append('<tr><td>'+ obj.comp_establistment_name +'</td><td>'+ obj.comp_address +'</td><td>'+ obj.comp_contact +'</td><td>'+ obj.comp_email +'</td><td>'+ obj.comp_status +'</td><td>'+ obj.comp_type +'</td><td>'+ obj.comp_username +'</td><td>'+ obj.comp_password +'</td><td><a href="#modal1" onClick="getCompany('+obj.comp_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delCompany('+obj.comp_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a></td></tr>');
+			});	
+		});	
+	}
+
+	function getCompany(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?datacomp='+dataId, function(jsonData) {
+			$('#comp_id').val(jsonData.comp_id);
+			$('#comp_establistment_name').val(jsonData.comp_establistment_name);
+			$('#comp_address').val(jsonData.comp_address);
+			$('#comp_contact').val(jsonData.comp_contact);
+			$('#comp_email').val(jsonData.comp_email);
+			$('#comp_status').val(jsonData.comp_status);
+			$('#comp_type').val(jsonData.comp_type);
+			$('#comp_username').val(jsonData.comp_username);
+			$('#comp_password').val(jsonData.comp_password);
+		});	
+	}
+	</script>	
+
+
+  </body>
+</html>

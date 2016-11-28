@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+    <div class="nav-wrapper container">
+    <ul class="right hide-on-med-and-down">
+    <li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+    </ul>
+  </nav>
+  <div class="row">
+    <div class="col s12">
+      <div class="card z-depth-5">
+        <div class="card-image" >
+          <img id="cdImg" src="background4.jpg">
+        </div>
+        <div class="col s2">
+          <img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+        </div>
+        <div class="card-content">
+         <h4 id="hAdmin">Hello Admin!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="row">
+		<div class="col s12 m2 l2">
+			<div class="collection">
+				<a href="applicantform.html" class="collection-item"><span class="new badge">4</span>Applicants</a>
+				<a href="companyform.html" class="collection-item">Locators</a>
+				<a href="postingform.html" class="collection-item"><span class="badge">14</span>Job Postings</a>
+				<a href="adminform.html" class="collection-item"><span class="badge">14</span>Admin</a>
+				<a href="rraform.html" class="collection-item"><span class="badge">14</span>Request</a>
+			</div>
+		</div>
+		<div class="col s12 m10 l10">
+			<h3>Locators</h3>
+			<a class="waves-effect waves-light btn" href="#modal1">Add Locator</a>
+			<table>
+				<thead>
+					<tr>
+						<th data-field="Qualifications">Qualifications</th>
+						<th data-field="Date Apply">Date Apply</th>
+						<th data-field="Status">Status</th>
+						<th data-field="Status">Status</th>
+						<th data-field="Applicant Id">Applicant Id</th>
+						<th data-field="Job Id">Job Id</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="employeeTableData">
+				</tbody>
+			</table>			
+		</div>
+	</div>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('.modal').modal();	
+		$('select').material_select();
+		
+		livedone();
+
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?dataemployee=employee', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#employeeTableData').append('<tr><td>'+ obj.apply_qualifications +'</td><td>'+ obj.apply_date +'</td><td>'+ obj.apply_status +'</td><td>'+ obj.applicant_id +'</td><td>'+ obj.job_id +'</td></tr>');
+			});	
+		});	
+	}
+
+	function getCompany(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataemployee='+dataId, function(jsonData) {
+			$('#apply_id').val(jsonData.apply_id);
+			$('#apply_qualifications').val(jsonData.apply_qualifications);
+			$('#apply_date').val(jsonData.apply_date);
+			$('#apply_status').val(jsonData.apply_status);
+			$('#applicant_id').val(jsonData.applicant_id);
+			$('#job_id').val(jsonData.job_id);
+		
+		});	
+	}
+	</script>	
+</body>
+</html>

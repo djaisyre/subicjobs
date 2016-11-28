@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>SubicJobs</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+  <div class="header  blue lighten-1">
+    <div class="container">
+      <a class="white-text" href="#"></a>
+    </div>
+  </div>
+
+
+  <h3 class="register"><img src="icons/r2.png" class="icon"> Job Experience </h3> <br>
+
+  <div class="row wew">
+    <form id="ajaxform" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="job_exp_establishment_name" name="job_exp_establishment_name" type="text" class="validate" />
+          <label for="job_exp_establishment_name">Company Name</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="job_exp_titlte" name="job_exp_titlte" type="text" class="validate" />
+          <label for="job_exp_titlte">Position</label>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="input-field col s6">
+          <input id="job_exp_started" name="job_exp_started" type="date" class="validate" />
+          <label for="job_exp_started">From (Month/Year Started)</label>
+        </div>
+          <div class="input-field col s6">
+          <input id="job_exp_end" name="job_exp_end" type="date" class="validate" />
+          <label for="job_exp_end">To (Month/Year Ended)</label>
+        </div>
+
+        </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+          <select class="browser-default" id="job_status" name="app_civilstatus">
+            <option value="" disabled selected>Job Status</option>
+            <option value="College">Permanent</option>
+            <option value="Vocational">Probational</option>
+            <option value="Vocational">Part-Time</option>
+          </select>
+        </div>
+		
+		<div class="input-field col s6">
+			<input type="text" name="applicant_id" id="applicant_id" class="validate" placeholder="Applicant ID" />
+			<label for="applicant_id">Applicant ID</label>
+			</div>
+    </div>
+
+        <br>
+        <br>
+
+
+
+          <button class="btn waves-effect waves-light btn-large responsive-button" type="submit" name="action" id="submitme">Submit
+             <i class="material-icons right">send</i></button>
+		<button class="btn waves-effect waves-light btn-large responsive-button" type="submit" name="action" id="editme">Update
+             <i class="material-icons right">send</i></button>
+		   
+    </form>
+  </div><br><br><br><br>
+
+
+  <div class="footer-copyright  blue lighten-1">
+    <div class="container">
+      <a class="white-text" href="#">Copyright. All Rights Reserved</a>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.modal').modal();
+		
+		$('.datepicker').pickadate({
+			selectMonths: true,
+			selectYears: 15
+		});
+
+		$('#submitme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/experience.php?ins=ins',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					window.location='AppIndex.html';
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});
+		
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/experience.php?edt=edt',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});	
+
+		livedone();
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?dataexp=experience', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#expTableData').append('<tr><td>'+ obj.job_exp_establishment_name +'</td><td>'+ obj.job_exp_started +'</td><td>'+ obj.job_exp_end +'</td><td>'+ obj.job_exp_titlte +'</td><td>'+ obj.applicant_id +'</td><td><a href="#modal1" onClick="getExperience('+obj.job_exp_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delExperience('+obj.job_exp_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a></td></tr>');
+			});	
+		});	
+	}
+
+	function getExperience(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataexp='+dataId, function(jsonData) {
+			$('#job_exp_id').val(jsonData.job_exp_id);
+			$('#job_exp_establishment_name').val(jsonData.job_exp_establishment_name);
+			$('#job_exp_started').val(jsonData.job_exp_started);
+			$('#job_exp_end').val(jsonData.job_exp_end);
+			$('#job_exp_titlte').val(jsonData.job_exp_titlte);
+			$('#applicant_id').val(jsonData.applicant_id);
+		});	
+	}
+	</script>
+
+  </body>
+</html>

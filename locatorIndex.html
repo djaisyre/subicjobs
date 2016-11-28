@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+<title>Subic Jobs</title>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+			<ul class="right">
+				<li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="background4.jpg">
+				</div>
+				<div class="col s2">
+					<img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+				</div>
+				<div class="card-content">
+					<h4 id="hAdmin">Hello (Locator Name)</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col s12">
+			<ul class="tabs">
+				<li class="tab col s3"><a href="#test1" id="tformat2">Job Posts</a></li>
+				<li class="tab col s5"><a href="#test2" id="tformat2">Endorsed/Hired Applicants</a></li>
+				<li class="tab col s4"><a href="#test3" id="tformat2">Notifications</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="test1">  
+		<div class="row border" >
+			<h5 class="teal white-text header2">Job Postings
+				<a href="rra.html" class="btn-floating btn-small waves-effect waves-light amber darken-4" id="btnAdd"><i class="material-icons">add</i></a>
+			</h5>
+			<div class="row padding-left-right">
+				<table class ="highlight bordered centered responsive-table">
+				<thead>
+				<tr>
+				<tr>
+				<th data-field="Title">Title</th>
+				<th data-field="Qualifications">Qualifications</th>
+				<th data-field="Deployment Place">Deployment Place</th>
+				<th data-field="Date Added">Date Added</th>
+				<th data-field="Closing Date">Closing Date</th>
+				<th data-field="Company ID">Company ID</th>
+				<th data-field="Register of Eligibles">Register of Eligibles</th>
+				<th data-field="Action">Action</th>
+				</tr>
+				</thead>
+				<tbody id="jpostingTableData">
+					<!--<tr>
+					<td>
+					<div>
+					<ul>
+					<a href="roe.html" class="waves-effect waves-light btn"><i class="material-icons">view</i></a>
+					<a class="btn-floating  green accent-4"><i class="material-icons">visibility</i></a>
+					<a class="btn-floating  red darken-1"><i class="material-icons">delete</i></a>
+					</ul>
+					</div>
+					</td>
+					</tr>-->
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="test2">
+		<div class="row border" >
+			<h5 class="teal white-text header2">Hired Applicants</h5>
+			<div class="row padding-left-right">
+			<table class ="highlight bordered centered responsive-table">
+				<thead>
+					<tr>
+					<th data-field="Name">Name</th>
+					<th data-field="Address">Address</th>
+					<th data-field="Position">Position</th>
+					<th data-field="Date of Birth">Date of Birth</th>
+					<th data-field="Place of Birth">Place of Birth</th>
+					<th data-field="Gate Pass Expiration">Gate Pass Expiration</th>
+					<th data-field="Action">Action</th>
+					</tr>
+				</thead>
+				<tbody id="jpostingHiredData">
+					<!--
+					<tr>
+						<td>John Doe</td>
+						<td>Keme st. over there city</td>
+						<td>Engineer</td>
+						<td>05/12/1990</td>
+						<td>over there city</td>
+						<td>09/12/2018</td>
+						<td>
+						<div>
+						<ul>
+						<a class="btn-floating  red darken-1"><i class="material-icons">delete</i></a>
+						</ul>
+						</div>
+						</td>
+					</tr>
+					-->
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+	<div id="test3" class="col s12">Test 3</div>
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('ul.tabs').tabs('select_tab', 'test1');
+
+		$('.modal').modal();
+		$('select').material_select();
+
+		// clear contents
+		var selectDropdown = $('#comp_id').empty().html('');
+		// trigger event
+		selectDropdown.trigger('contentChanged');		
+		$.getJSON('server/fetcher.php?datacomp=company', function(result) {
+			$.each(result, function(index, jsonData) {
+				selectDropdown.append($("<option></option>").attr("value", jsonData.comp_id).text(jsonData.comp_establistment_name));
+			});
+		});	
+
+		$('#submitme').click(function() {
+			$('#ajaxform').submit(function(e) {
+			var postData = $(this).serializeArray();
+
+			$.ajax({
+				url : 'server/posting.php?ins=ins',
+				type: 'POST',
+				data : postData,
+				success:function(data, textStatus, jqXHR) {
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				}
+			});
+
+			e.preventDefault();
+			});
+		});
+
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+			var postData = $(this).serializeArray();
+
+			$.ajax({
+				url : 'server/posting.php?edt=edt',
+				type: 'POST',
+				data : postData,
+				success:function(data, textStatus, jqXHR) {
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				}
+			});
+
+			e.preventDefault();
+			});
+		});	
+
+		livedone();	
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL.split('&'), sParameterName, i;
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : sParameterName[1];
+			}
+		}
+	}	
+
+	function liveFeed() {
+		var compid = getUrlParameter('compid');
+		$.getJSON('server/fetcher.php?datapostbycomp='+compid, function(jsonData) {
+			$('#jpostingTableData').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#jpostingTableData').append('<tr><td>'+ obj.job_title +'</td><td>'+ obj.job_qualifications +'</td><td>'+ obj.job_deployment_place +'</td><td>'+ obj.job_date_added +'</td><td>'+ obj.job_closing_date +'</td><td>'+ obj.comp_id +'</td><td><a href="roe.html?jobid='+obj.job_id+'&compid='+compid+'" onClick="roe.html" class="waves-effect waves-light btn">view</a><td><a href="#modal1" onClick="getPosting('+obj.job_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delCompany('+obj.job_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a></td></tr>');
+			});	
+		});			
+
+		$.getJSON('server/fetcher.php?hired=hired', function(jsonData) {
+			$('#jpostingHiredData').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#jpostingHiredData').append('<tr><td>'+obj.app_lastname+' '+obj.app_firstname+'</td><td>'+obj.app_address+'</td><td>'+obj.comp_establistment_name+'</td><td>'+obj.job_title+'</td><td>'+obj.app_dob+'</td><td>'+obj.app_pob+'</td><td></td><td><a href="profile.html?appId='+obj.applicant_id+'" class="waves-effect waves-light btn">Profile</a></td></tr>');
+			});	
+		});			
+	}
+
+	function getPosting(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?datapost='+dataId, function(jsonData) {
+			$('#job_id').val(jsonData.job_id);
+			$('#job_title').val(jsonData.job_title);
+			$('#job_qualifications').val(jsonData.job_qualifications);
+			$('#job_deployment_place').val(jsonData.job_deployment_place);
+			$('#job_date_added').val(jsonData.job_date_added);
+			$('#job_closing_date').val(jsonData.job_closing_date);
+			$('select[name="comp_id"]').find('option[value="'+jsonData.comp_id+'"]').attr("selected", true);
+		});	
+	}
+	</script>
+</body>
+</html>

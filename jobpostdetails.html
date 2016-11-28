@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Subic Jobs</title>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+			<ul class="left">
+				<li id="AddTitle">Hello User!</li>
+			</ul>
+			<ul class="right">
+				<li><a href="jobpost.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="background4.jpg">
+				</div>
+				<div class="col s12 center" id="imgSze">
+					<img src="icons/e1.png" width="95px" height="95px" class="circle">
+				</div>
+				<div class="card-content center">
+					<p> John Doe</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row border">
+		<h5 class="teal white-text header">Job Full Detals <a href="" id="backbtn" class="btn btn-large waves-effect waves-light">Back To Job Posting</a></h5>
+		<div class="row padding-left-right">
+			<div>
+				<form method="post" id="applicant-apply" class="col s12">
+					<input type="hidden" name="appusrid" id="appusrid" class="validate" />
+					<input type="hidden" name="postjobid" id="postjobid" class="validate" />
+					<p id="applicant-check"></p>
+					<p><button type="submit" name="btn-loginapplicant" id="btn-loginapplicant" class="btn btn-large waves-effect waves-light">Apply Now</button></p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		var jobid = getUrlParameter('appjobid');
+		var usrid = getUrlParameter('usrid');
+		function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL.split('&'), sParameterName, i;
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		}
+		
+		if(usrid) {
+			$('#backbtn').attr('href','jobpost.html?usrid='+usrid);
+		}
+
+		$("#appusrid").val(usrid);
+		$("#postjobid").val(jobid);
+		$("#btn-loginapplicant").click(function() {
+			var postData = $('#applicant-apply').serializeArray();
+			$.ajax({
+				type : 'POST',
+				url  : 'server/webApply.php',
+				data : postData,
+				success: function(data) {
+					console.log(data);
+					location.reload();
+				}
+			});
+			event.preventDefault();	
+		});	
+
+		$.getJSON('server/fetcher.php?jfulldtls='+jobid, function(jsonData) {
+			$('#jobDtls').empty();
+			var chkbox = '';
+			var str = jsonData.job_qualifications;
+			var res = str.split(" ");
+			$.each(res, function(idx, obj) {
+				chkbox += '<p><input type="checkbox" name="quali[]" value="'+obj+'" id="quali'+idx+'" /><label for="quali'+idx+'">'+obj+'</label></p>';
+			});
+			$('#applicant-check').append('<p>'+jsonData.job_title+'</p><p>'+jsonData.job_deployment_place+'</p><p>'+chkbox+'</p>');
+		});			
+	});	
+	</script>
+</body>
+</html>

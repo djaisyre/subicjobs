@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+	<title>Subic Jobs</title>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+		<ul class="left">
+			<li id="AddTitle">Hello User!</li>
+		</ul>
+		<ul class="right">
+			<li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+		</ul>
+	</nav>
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="background4.jpg">
+				</div>
+				<div class="col s12 center" id="imgSze">
+					<img src="icons/e1.png" width="95px" height="95px" class="circle">
+				</div>
+				<div class="card-content center">
+					<p> John Doe</p>
+				</div>
+			</div>
+		</div>
+		<div class="col s12">
+			<ul class="tabs">
+				<li class="tab col s6"><a href="#test1" id="tformat2">Home</a></li>
+				<li class="tab col s6"><a href="#test2" id="tformat2">Notifications</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="test1">
+		<div class="row border">
+			<h5 class="teal white-text header">General Information
+				<a href="#modal1" class="btn-floating btn-small waves-effect waves-light amber darken-4" id="#modal1"><i class="material-icons">edit</i></a>
+			</h5>
+			<div class="row padding-left-right">
+				<!-- Modal Structure -->
+				<div id="modal1" class="modal">
+					<div class="modal-content">
+						<div class="row">
+							<form id="ajaxform" class="col s12">
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="app_firstname" name="app_firstname" type="text" class="validate">
+										<label for="app_firstname">First Name</label>
+									</div>
+									<div class="input-field col s12">
+										<input id="app_middlename" name="app_middlename" type="text" class="validate">
+										<label for="app_middlename">Middle Name</label>
+									</div>
+									<div class="input-field col s12">
+										<input id="app_lastname" name="app_lastname" type="text" class="validate">
+										<label for="app_lastname">Last Name</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input id="app_address" name="app_address" type="text" class="validate">
+										<label for="app_address">Address</label>
+									</div>
+								</div>
+								<div class="row">			
+									<div class="input-field col s6">
+										<input id="app_contact" name="app_contact" type="number" class="validate">
+										<label for="app_contact">Contact Number</label>
+									</div>	
+									<div class="input-field col s6">
+										<select name="app_civilstatus" id="app_civilstatus">
+											<option value="Single">Single</option>
+											<option value="Merried">Married</option>
+											<option value="Widdow">Widdow</option>
+										</select>
+										<label>Civil Status</label>
+									</div>		
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input type="email" name="app_email" id="app_email" class="validate" placeholder="Email" />
+										<label for="app_email">Email</label>
+									</div>
+									<div class="input-field col s6">
+										<input type="date" name="app_dob" id="app_dob" class="datepicker" />
+										<label for="app_dob">Date of Birth</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input type="text" name="app_pob" id="app_pob" class="validate" />
+										<label for="app_pob">Place of Birth</label>
+									</div>							
+									<div class="input-field col s6">
+										<select name="app_sex" id="app_sex">
+											<option value="Male">Male</option>
+											<option value="Femaale">Female</option>
+										</select>
+										<label>Sex</label>
+									</div>
+								</div>
+								<div class="row">					
+									<div class="input-field col s6">
+										<input type="hidden" id="app_status" name="app_status">
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input type="text" name="app_username" id="app_username" class="validate" />
+										<label for="app_username">Username</label>
+									</div>
+									<div class="input-field col s6">
+										<input type="password" name="app_password" id="app_password" class="validate" />
+										<label for="app_password">Password</label>
+									</div>
+								</div>							
+								<div class="row">
+									<div class="input-field col s12">
+										<button class="btn waves-effect waves-light" type="submit" name="action" id="editme">Update<i class="material-icons right">send</i></button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+					</div>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th data-field="Firstname">Firstname</th>
+							<th data-field="Middlename">Middlename</th>
+							<th data-field="Lastname">Lastname</th>
+							<th data-field="Address">Address</th>
+							<th data-field="Contact">Contact</th>
+							<th data-field="Email">Email</th>
+							<th data-field="DOB">DOB</th>
+							<th data-field="POB">POB</th>
+							<th data-field="Sex">Sex</th>
+							<th data-field="Civil Status">Civil Status</th>
+							<th data-field="Date Reg.">Date Reg.</th>
+							<!--<th data-field="Status">Status</th>-->
+							<th data-field="Username">Username</th>
+							<th data-field="Password">Password</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="applicantTableData"></tbody>
+				</table>
+			</div>
+		</div>
+		<!--PARA SA EDUCATIONAL BACKGROUND-->
+		<div class="row border" >
+			<h5 class="teal white-text header2">Educational Information
+				<a href="educform.html" class="btn-floating btn-small waves-effect waves-light amber darken-4"><i class="material-icons">add</i></a>
+			</h5>
+			<div class="row padding-left-right">
+				<table class ="highlight bordered centered responsive-table">
+					<thead>
+						<tr>
+							<th data-field="Education">Education</th>
+							<th data-field="School">School</th>
+							<th data-field="Address">Address</th>
+							<th data-field="Year Graduated">Year Graduated</th>
+							<th data-field="Applicant ID">Applicant ID</th>
+							<th data-field="Action">Action</th>
+						</tr>
+					</thead>
+					<tbody id="educTableData"></tbody>
+				</table>
+			</div>
+		</div>
+		<!--PARA SA JOB EXPERIENCE-->
+		<div class="row border">
+			<h5 class="teal white-text header2">Job Experiences
+				<a href="experinceform.html" class="btn-floating btn-small waves-effect waves-light amber darken-4" id="btnAdd"><i class="material-icons">add</i></a>
+			</h5>
+			<div class="row padding-left-right">
+				<table class ="highlight bordered centered responsive-table">
+					<thead>
+						<tr>
+						<th data-field="Educational Level"> Company Name</th>
+						<th data-field="School Name">Position</th>
+						<th data-field="Course">Month/Year Started</th>
+						<th data-field="Year Graduated">Month/Year Ended</th>
+						<th data-field="Year Graduated">Job Status</th>
+						<th data-field="Action">Action</th>
+						</tr>
+					</thead>
+					<tbody id="expTableData"> 
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div id="test2" class="col s12">Test 2</div>
+	</div>
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('.datepicker').pickadate({
+			selectMonths: true,
+			selectYears: 15
+		});
+
+		$('ul.tabs').tabs('select_tab', 'test1');
+
+		$('.modal').modal();
+		$('select').material_select();
+
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+
+				$.ajax({
+					url : 'server/applicant.php?edt=edt',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+						location.reload();
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});		
+
+		livedone();
+	});	
+	
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 2000);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?dataapp=applicant', function(jsonData) {
+			$('#applicantTableData').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#applicantTableData').append('<tr><td>'+ obj.app_firstname +'</td><td>'+ obj.app_middlename +'</td><td>'+ obj.app_lastname +'</td><td>'+ obj.app_address +'</td><td>'+ obj.app_contact +'</td><td>'+ obj.app_email +'</td><td>'+ obj.app_dob +'</td><td>'+ obj.app_pob +'</td><td>'+ obj.app_sex +'</td><td>'+ obj.app_civilstatus +'</td><td>'+ obj.app_date_registered +'</td><td>'+ obj.app_status +'</td><td>'+ obj.app_username +'</td><td>'+ obj.app_password +'</td><td><a href="#modal1" onClick="getApplicant('+obj.applicant_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delApplicant('+obj.applicant_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a> <a href="educform.html" class="waves-effect waves-light btn"><i class="material-icons left">person_pin</i> Education</a> <a href="experinceform.html" class="waves-effect waves-light btn"><i class="material-icons left">assignment</i> Experience</a></td></tr>');
+			});	
+		});	
+
+		$.getJSON('server/fetcher.php?dataeduc=education', function(jsonData) {
+			$('#educTableData').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#educTableData').append('<tr><td>'+ obj.educ_type +'</td><td>'+ obj.educ_school_name +'</td><td>'+ obj.educ_school_address +'</td><td>'+ obj.educ_year_graduated +'</td><td>'+ obj.applicant_id +'</td><td><a href="#modal1" onClick="getEducation('+obj.educ_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delEduc('+obj.educ_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a></td></tr>');
+			});	
+		});
+
+		$.getJSON('server/fetcher.php?dataexp=experience', function(jsonData) {
+			$('#expTableData').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#expTableData').append('<tr><td>'+ obj.job_exp_establishment_name +'</td><td>'+ obj.job_exp_started +'</td><td>'+ obj.job_exp_end +'</td><td>'+ obj.job_exp_titlte +'</td><td>'+ obj.applicant_id +'</td><td><a href="#modal1" onClick="getExperience('+obj.job_exp_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delExperience('+obj.job_exp_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a></td></tr>');
+			});	
+		});			
+	}
+
+	function getApplicant(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataapp='+dataId, function(jsonData) {
+			$('#applicant_id').val(jsonData.applicant_id);
+			$('#app_firstname').val(jsonData.app_firstname);
+			$('#app_middlename').val(jsonData.app_middlename);
+			$('#app_lastname').val(jsonData.app_lastname);
+			$('#app_address').val(jsonData.app_address);
+			$('#app_contact').val(jsonData.app_contact);
+			$('#app_email').val(jsonData.app_email);
+			$('#app_dob').val(jsonData.app_dob);
+			$('#app_pob').val(jsonData.app_pob);
+
+			$("#app_sex option").filter(function() { return this.text == jsonData.app_sex; }).attr('selected', true);
+			$("#app_civilstatus option").filter(function() { return this.text == jsonData.app_civilstatus; }).attr('selected', true);
+			$('select[name="app_status"]').find('option[value="'+jsonData.app_status+'"]').attr("selected", true);
+
+			$('#app_username').val(jsonData.app_username);
+			$('#app_password').val(jsonData.app_password);
+		});	
+	}
+
+	function getEducation(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataeduc='+dataId, function(jsonData) {
+			$('#educ_id').val(jsonData.educ_id);
+			$("#educ_type option").filter(function() { return this.text == jsonData.educ_type; }).attr('selected', true);
+			$('#educ_school_name').val(jsonData.educ_school_name);
+			$('#educ_school_address').val(jsonData.educ_school_address);
+			$('#educ_year_graduated').val(jsonData.educ_year_graduated);
+			$('#applicant_id').val(jsonData.applicant_id);
+		});	
+	}
+
+	function getExperience(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataexp='+dataId, function(jsonData) {
+			$('#job_exp_id').val(jsonData.job_exp_id);
+			$('#job_exp_establishment_name').val(jsonData.job_exp_establishment_name);
+			$('#job_exp_started').val(jsonData.job_exp_started);
+			$('#job_exp_end').val(jsonData.job_exp_end);
+			$('#job_exp_titlte').val(jsonData.job_exp_titlte);
+			$('#applicant_id').val(jsonData.applicant_id);
+		});	
+	}
+	</script>
+</body>
+</html>

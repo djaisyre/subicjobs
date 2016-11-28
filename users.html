@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<title>Subic Jobs</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col s12">
+			<ul class="tabs" id="tformat">
+				<li class="tab col s6"><a href="#test1" id="tformat">Admin User</a></li>
+				<li class="tab col s6"><a href="#test2" id="tformat">Locators</a></li>
+			</ul>
+		</div>
+		<div id="test1"> 
+			<br><br><div class ="input-field col6">
+			<table class ="highlight bordered centered">
+			<thead>
+				<tr>
+					<th data-field="username"> Username</th>
+					<th data-field="password">Password</th>
+					<th data-field="action">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Admin</td>
+					<td>Aa1234567</td>
+					<td>
+						<div>
+							<ul>
+								<a href="#" class="btn-floating red"><i class="material-icons">edit</i></a>
+								<a class="btn-floating cyan darken-3"><i class="material-icons">archive</i></a>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+			</div>
+		</div>
+		<div id="test2">
+			<table class ="highlight bordered centered">
+				<thead>
+					<tr>
+						<th data-field="username">Locator Username</th>
+						<th data-field="password">Locator Password</th>
+						<th data-field="action">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Admin</td>
+						<td>Aa1234567</td>
+						<td>
+							<div>
+								<ul>
+									<a href="#" class="btn-floating red"><i class="material-icons">edit</i></a>
+									<a class="btn-floating cyan darken-3"><i class="material-icons">archive</i></a>
+								</ul>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('ul.tabs').tabs('select_tab', 'test1');
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+    <div class="nav-wrapper container">
+    <ul class="right hide-on-med-and-down">
+    <li><a href="login.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+    </ul>
+  </nav>
+  <div class="row">
+    <div class="col s12">
+      <div class="card z-depth-5">
+        <div class="card-image" >
+          <img id="cdImg" src="background4.jpg">
+        </div>
+        <div class="col s2">
+          <img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+        </div>
+        <div class="card-content">
+         <h4 id="hAdmin">Hello Admin!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+	<div class="row">
+		<div class="col s12 m2 l2">
+			<div class="collection">
+				<a href="applicantform.html" class="collection-item"><span class="new badge">4</span>Applicants</a>
+				<a href="companyform.html" class="collection-item">Locators</a>
+				<a href="postingform.html" class="collection-item"><span class="badge">14</span>Job Postings</a>
+				<a href="adminform.html" class="collection-item"><span class="badge">14</span>Admin</a>
+				<a href="rraform.html" class="collection-item"><span class="badge">14</span>Request</a>
+				<a href="shortlist.html" class="collection-item"><span class="badge">14</span>Shortlist</a>
+				<a href="skills.html" class="collection-item"><span class="badge">14</span>Skills Inventory</a>
+				<a href="pending1.html" class="collection-item"><span class="badge">14</span>Pending Job Posts</a>
+				<a href="hired2.html" class="collection-item"><span class="badge">14</span>List of Hired Applicants</a>
+				<a href="archive.html" class="collection-item"><span class="badge">14</span>Archive</a>
+				<a href="#!" class="collection-item"><span class="badge">14</span>Reports</a>
+				<a href="addIndex" class="collection-item"><span class="badge">14</span>Dashboard</a>
+			</div>
+		</div>
+		<div class="col s12 m10 l10">
+			<h3>Applicants</h3>
+			<a class="waves-effect waves-light btn" href="#modal1">Add Applicant</a>
+			<!-- Modal Structure -->
+			<div id="modal1" class="modal">
+				<div class="modal-content">
+					<h4>Add Applicant</h4>
+					<div class="row">
+						<form id="ajaxform" class="col s12">
+							<div class="row">
+									<div class="input-field col s12">
+									<input id="app_firstname" name="app_firstname" type="text" class="validate">
+									<label for="app_firstname">First Name</label>
+									</div>
+							<div class="input-field col s12">
+									<input id="app_middlename" name="app_middlename" type="text" class="validate">
+									<label for="app_middlename">Middle Name</label>
+									</div>
+							<div class="input-field col s12">
+									<input id="app_lastname" name="app_lastname" type="text" class="validate">
+									<label for="app_lastname">Last Name</label>
+							</div>
+					</div>
+					
+					<div class="row">
+						<div class="input-field col s12">
+						<input id="app_address" name="app_address" type="text" class="validate">
+						<label for="app_address">Address</label>
+						</div>
+					</div>
+			
+					<div class="row">			
+						<div class="input-field col s6">
+						<input id="app_contact" name="app_contact" type="number" class="validate">
+						<label for="app_contact">Contact Number</label>
+						</div>	
+					</div>
+					
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="email" name="app_email" id="app_email" class="validate" placeholder="Email" />
+									<label for="app_email">Email</label>
+								</div>
+								<div class="input-field col s6">
+									<input type="date" name="app_dob" id="app_dob" class="datepicker" />
+									<label for="app_dob">Date of Birth</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="text" name="app_pob" id="app_pob" class="validate" />
+									<label for="app_pob">Place of Birth</label>
+								</div>							
+								<div class="input-field col s6">
+									<select name="app_sex" id="app_sex">
+										<option value="Male">Male</option>
+										<option value="Femaale">Female</option>
+									</select>
+									<label>Sex</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<select name="app_civilstatus" id="app_civilstatus">
+										<option value="Single">Single</option>
+										<option value="Merried">Married</option>
+										<option value="Widdow">Widdow</option>
+									</select>
+									<label>Civil Status</label>
+								</div>							
+								<div class="input-field col s6">
+									<select name="app_status" id="app_status">
+										<option value="Hired">Hired</option>
+										<option value="Unemployed">Unemployed</option>
+									</select>
+									<label>Civil Status</label>
+								</div>
+								<div class="input-field col s6">
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s6">
+									<input type="text" name="app_username" id="app_username" class="validate" />
+									<label for="app_username">Username</label>
+								</div>
+								<div class="input-field col s6">
+									<input type="password" name="app_password" id="app_password" class="validate" />
+									<label for="app_password">Password</label>
+								</div>
+							</div>							
+							<div class="row">
+								<div class="input-field col s12">
+									<button class="btn waves-effect waves-light" type="submit" name="action" id="submitme">Submit<i class="material-icons right">send</i></button>
+									<button class="btn waves-effect waves-light" type="submit" name="action" id="editme">Update<i class="material-icons right">send</i></button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+				</div>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th data-field="Firstname">Firstname</th>
+						<th data-field="Middlename">Middlename</th>
+						<th data-field="Lastname">Lastname</th>
+						<th data-field="Address">Address</th>
+						<th data-field="Contact">Contact</th>
+						<th data-field="Email">Email</th>
+						<th data-field="DOB">DOB</th>
+						<th data-field="POB">POB</th>
+						<th data-field="Sex">Sex</th>
+						<th data-field="Civil Status">Civil Status</th>
+						<th data-field="Date Reg.">Date Reg.</th>
+						<th data-field="Status">Status</th>
+						<th data-field="Username">Username</th>
+						<th data-field="Password">Password</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="applicantTableData">
+				</tbody>
+			</table>			
+		</div>
+	</div>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('.datepicker').pickadate({
+		formatSubmit: 'yyyy/mm/dd',
+		hiddenName: true
+		});
+
+	
+	
+		$('.modal').modal();
+		$('select').material_select();
+
+		$('#submitme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/applicant.php?ins=ins',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});	
+		
+		$('#editme').click(function() {
+			$('#ajaxform').submit(function(e) {
+				var postData = $(this).serializeArray();
+				
+				$.ajax({
+					url : 'server/applicant.php?edt=edt',
+					type: 'POST',
+					data : postData,
+					success:function(data, textStatus, jqXHR) {
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+
+				e.preventDefault();
+			});
+		});		
+		
+		livedone();
+	});
+
+	function livedone() {
+		setTimeout(function() {
+			liveFeed();
+			livedone();
+		}, 200);
+	}
+
+	function liveFeed() {
+		$.getJSON('server/fetcher.php?dataapp=applicant', function(jsonData) {
+			$('tbody').empty();
+			$.each(jsonData, function(idx, obj) {
+				$('#applicantTableData').append('<tr><td>'+ obj.app_firstname +'</td><td>'+ obj.app_middlename +'</td><td>'+ obj.app_lastname +'</td><td>'+ obj.app_address +'</td><td>'+ obj.app_contact +'</td><td>'+ obj.app_email +'</td><td>'+ obj.app_dob +'</td><td>'+ obj.app_pob +'</td><td>'+ obj.app_sex +'</td><td>'+ obj.app_civilstatus +'</td><td>'+ obj.app_date_registered +'</td><td>'+ obj.app_status +'</td><td>'+ obj.app_username +'</td><td>'+ obj.app_password +'</td><td><a href="#modal1" onClick="getApplicant('+obj.applicant_id+')" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i> Edit</a> <a onClick="delApplicant('+obj.applicant_id+')" class="waves-effect waves-light btn"><i class="material-icons left">delete</i> Archive</a> <a href="educform.html" class="waves-effect waves-light btn"><i class="material-icons left">person_pin</i> Education</a> <a href="experinceform.html" class="waves-effect waves-light btn"><i class="material-icons left">assignment</i> Experience</a></td></tr>');
+			});	
+		});	
+	}
+
+	function getApplicant(id) {
+		var dataId = id;
+		$.getJSON('server/getter.php?dataapp='+dataId, function(jsonData) {
+			$('#applicant_id').val(jsonData.applicant_id);
+			$('#app_firstname').val(jsonData.app_firstname);
+			$('#app_middlename').val(jsonData.app_middlename);
+			$('#app_lastname').val(jsonData.app_lastname);
+			$('#app_address').val(jsonData.app_address);
+			$('#app_contact').val(jsonData.app_contact);
+			$('#app_email').val(jsonData.app_email);
+			$('#app_dob').val(jsonData.app_dob);
+			$('#app_pob').val(jsonData.app_pob);
+
+			$("#app_sex option").filter(function() { return this.text == jsonData.app_sex; }).attr('selected', true);
+			$("#app_civilstatus option").filter(function() { return this.text == jsonData.app_civilstatus; }).attr('selected', true);
+			$('select[name="app_status"]').find('option[value="'+jsonData.app_status+'"]').attr("selected", true);
+
+			$('#app_username').val(jsonData.app_username);
+			$('#app_password').val(jsonData.app_password);
+		});	
+	}
+	</script>	
+	
+</body>
+</html>

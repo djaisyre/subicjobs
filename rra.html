@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+<title>SubicJobs</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+<div class="header  blue lighten-1">
+<div class="container">
+<a class="white-text" href="#"></a>
+</div>
+</div>
+
+
+<h3 class="register"><img src="icons/r2.png" class="icon"> Request for Recruitment Assistance (RRA) </h3> <br>
+
+
+<div class="row wew">
+<form method="post" id="ajaxform" class="col s12">
+
+<div class="row">
+<div class="input-field col s12">
+<input id="comp_id" name="comp_id" type="hidden" value="1">
+</div>
+</div>
+
+<div class="row">
+<div class="input-field col s12">
+<input id="tbl_rra_job" name="tbl_rra_job" type="text" class="validate">
+<label for="tbl_rra_job">Job Vacancy (Specify Position)</label>
+</div>
+<div class="input-field col s6">
+<input id="tbl_num_hired" name="tbl_num_hired" type="number" class="validate">
+<label for="tbl_num_hired">Number of Personnel to be Hired for the Position</label>
+</div>
+<div class="input-field col s6">
+<input id="tbl_num_endorsed" name="tbl_num_endorsed" type="number" class="validate">
+<label for="tbl_num_endorsed">Number of Applicants you want to be Endorsed (if Applicable)</label>
+</div>
+</div>
+
+<div class="row">
+<div class="input-field col s12">
+<input id="tbl_duties" name="tbl_duties" type="text" class="validate">
+<label for="tbl_duties">Duties and Functions</label>
+</div>
+
+<div class="col s12">
+<div class="row">
+<div class="input-field col s12">
+<textarea id="tbl_qualifications" name="tbl_qualifications" class="materialize-textarea"></textarea>
+<label for="tbl_qualifications">Qualifications</label>
+</div>
+</div>
+</div>
+
+<div class="input-field col s6">
+<input id="tbl_closing_date" name="tbl_closing_date" type="date" class="datepicker">
+<label for="tbl_closing_date">Closing Date of Position</label>
+</div>
+<div class="input-field col s6">
+<input id="tbl_date_exam" name="tbl_date_exam" type="date" class="datepicker">
+<label for="tbl_date_exam">Date for Examination Interview</label>
+</div>
+
+<div class="input-field col s12">
+<input id="tbl_venue_interview" name="tbl_venue_interview" type="text" class="validate">
+<label for="tbl_venue_interview">Venue for Interview (Complete Address)</label>
+</div>
+<div class="input-field col s12">
+<input id="tbl_date_hire" name="tbl_date_hire" type="date" class="datepicker">
+<label for="tbl_date_hire">Date/Month Expected to Hire Requested Workers</label>
+</div>
+<div class="col s12">
+<div class="row">
+<div class="input-field col s12">
+<textarea id="tbl_docu" name="tbl_docu" class="materialize-textarea"></textarea>
+<label for="tbl_docu">Documents Required from Applicants</label>
+</div>
+</div>
+</div>
+
+</div>
+<button class="btn waves-effect waves-light btn-large responsive-button" type="submit" name="action" id="submitme">Submit
+<i class="material-icons right">send</i>
+</button>
+</form>
+</div><br><br><br><br>
+
+
+<div class="footer-copyright  blue lighten-1">
+<div class="container">
+<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+$('.datepicker').pickadate({
+formatSubmit: 'yyyy/mm/dd',
+hiddenName: true
+});
+
+
+$('#submitme').click(function() {
+$('#ajaxform').submit(function(e) {
+var postData = $(this).serializeArray();
+
+$.ajax({
+url : 'server/rraform.php?ins=ins',
+type: 'POST',
+data : postData,
+success:function(data, textStatus, jqXHR) {
+//location.reload();
+window.location.href="locatorIndex.html";
+},
+error: function(jqXHR, textStatus, errorThrown) {
+}
+});
+
+e.preventDefault();
+});
+});	
+
+});
+</script>	
+
+
+</body>
+</html>
